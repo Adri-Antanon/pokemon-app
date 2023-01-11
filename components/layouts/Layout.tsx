@@ -1,5 +1,6 @@
 import Head from 'next/head';
 import { ReactNode } from 'react';
+import { Navbar } from '../ui';
 
 interface Props {
   children: ReactNode;
@@ -18,6 +19,7 @@ export default function Layout({ children, title = 'Pokemon App' }: Props) {
         />
         <meta name="keywords" content={`${title}, Pokemon, pokedex`} />
       </Head>
+      <Navbar />
       <main>{children}</main>
     </>
   );

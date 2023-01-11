@@ -7,17 +7,17 @@ import { lightTheme, darkTheme } from '../themes';
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
-    // <NextThemesProvider
-    //   defaultTheme="system"
-    //   attribute="class"
-    //   value={{
-    //     light: lightTheme.className,
-    //     dark: darkTheme.className,
-    //   }}
-    // >
-    <NextUIProvider theme={darkTheme}>
-      <Component {...pageProps} />
-    </NextUIProvider>
-    // </NextThemesProvider>
+    <NextThemesProvider
+      defaultTheme="system"
+      attribute="class"
+      value={{
+        light: lightTheme.className,
+        dark: darkTheme.className,
+      }}
+    >
+      <NextUIProvider>
+        <Component {...pageProps} />
+      </NextUIProvider>
+    </NextThemesProvider>
   );
 }
