@@ -1,21 +1,21 @@
-import axios from 'axios';
 import { NextPage, GetStaticProps } from 'next';
-import { pokeApi } from '../api';
 import { Layout } from '../components/layouts';
+
+import { pokeApi } from '../api';
 import { PokemonListResponse } from '../interfaces';
-import { PokemonResult } from '../interfaces/pokemon-list';
+import { SmallPokemon } from '../interfaces/pokemon-list';
 
 interface Props {
-  pokemons: PokemonResult[];
+  pokemons: SmallPokemon[];
 }
 export default function HomePage({ pokemons }: Props) {
   return (
     <Layout title="Pokémon List">
       <ul>
         {pokemons && pokemons.length > 0
-          ? pokemons.map((poke, index) => (
+          ? pokemons.map((poke) => (
               <li key={poke.name}>
-                {index + 1} - {poke.name}
+                {poke.id} - {poke.name}
               </li>
             ))
           : null}
@@ -35,9 +35,19 @@ export const getStaticProps: GetStaticProps = async (ctx) => {
     '/pokemon/?limit=151',
   );
 
+  const pokemons: SmallPokemon[] = data.results.map((poke, index) => {
+    return {
+      ...poke,
+      id: index + 1,
+      img: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${
+        index + 1
+      }.svg`,
+    };
+  });
+
   return {
     props: {
-      pokemons: data.results,
+      pokemons,
     },
   };
 };
