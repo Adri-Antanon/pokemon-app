@@ -24,15 +24,7 @@ const PokemonCard: FC<Props> = ({ pokemon }) => {
             p: 1,
           }}
         >
-          <Image
-            alt={id + ' - ' + name}
-            src={img}
-            height={140}
-            width={300}
-            style={{
-              width: '100%',
-            }}
-          />
+          <Image alt={id + ' - ' + name} src={img} height={150} width={300} />
         </Card.Body>
         <Card.Footer>
           <Row justify="space-between">
