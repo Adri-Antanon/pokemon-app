@@ -29,7 +29,7 @@ const Navbar: FC<Props> = () => {
         width={70}
         height={70}
       />
-      <Text color="white" h2>
+      <Text color="white" h3>
         Pokemon - First gen
       </Text>
       <Spacer
