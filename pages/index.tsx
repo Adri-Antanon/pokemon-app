@@ -14,11 +14,13 @@ export default function HomePage({ pokemons }: Props) {
   return (
     <Layout title="Pokémon List">
       <Grid.Container gap={2} justify="flex-start">
-        {pokemons && pokemons.length > 0
-          ? pokemons.map((poke) => (
-              <PokemonCard pokemon={poke} key={poke.name + ' ' + poke.id} />
-            ))
-          : null}
+        {pokemons && pokemons.length > 0 ? (
+          pokemons.map((poke) => (
+            <PokemonCard pokemon={poke} key={poke.name + ' ' + poke.id} />
+          ))
+        ) : (
+          <h1>LOADING...</h1>
+        )}
       </Grid.Container>
     </Layout>
   );

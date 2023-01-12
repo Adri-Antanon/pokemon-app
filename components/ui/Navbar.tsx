@@ -1,7 +1,6 @@
 import { useTheme as useNextTheme } from 'next-themes';
-import { Spacer, Switch, Text, useTheme } from '@nextui-org/react';
+import { Spacer, Text, useTheme } from '@nextui-org/react';
 import { FC } from 'react';
-import { SwitchEvent } from '@nextui-org/react/esm/switch/switch';
 import Image from 'next/image';
 
 interface Props {}
@@ -29,7 +28,7 @@ const Navbar: FC<Props> = () => {
         width={70}
         height={70}
       />
-      <Text color="white" h3>
+      <Text color="white" h2>
         Pokemon - First gen
       </Text>
       <Spacer
