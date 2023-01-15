@@ -34,7 +34,7 @@ export default function HomePage({ pokemons }: Props) {
 
 export const getStaticProps: GetStaticProps = async (ctx) => {
   const { data } = await pokeApi.get<PokemonListResponse>(
-    '/pokemon/?limit=1008',
+    '/pokemon/?limit=251',
   );
 
   const pokemons: SmallPokemon[] = data.results.map((poke, index) => {

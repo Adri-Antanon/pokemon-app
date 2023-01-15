@@ -3,15 +3,13 @@ import { Spacer, Text, useTheme } from '@nextui-org/react';
 import { FC } from 'react';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
+import Link from 'next/link';
 
 interface Props {}
 
 const Navbar: FC<Props> = () => {
   const { setTheme } = useNextTheme();
   const { isDark, theme } = useTheme();
-  const router = useRouter();
-
-  const handleClick = () => router.push('/');
   return (
     <div
       style={{
@@ -24,13 +22,13 @@ const Navbar: FC<Props> = () => {
         padding: '0 20px',
       }}
     >
-      <div
+      <Link
         style={{
           display: 'flex',
           alignItems: 'center',
           cursor: 'pointer',
         }}
-        onClick={handleClick}
+        href={'/'}
       >
         <Image
           src={
@@ -41,15 +39,20 @@ const Navbar: FC<Props> = () => {
           height={70}
         />
         <Text color="white" h2>
-          Pokémon - Pokedex
+          P
         </Text>
-      </div>
+        <Text color="white" h3>
+          okémon - Pokedex
+        </Text>
+      </Link>
       <Spacer
         css={{
           flex: 1,
         }}
       />
-      <Text color="white"> Favorites</Text>
+      <Link href={'/favorites'}>
+        <Text color="white"> Favorites</Text>
+      </Link>
     </div>
   );
 };
