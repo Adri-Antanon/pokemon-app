@@ -3,15 +3,78 @@ import { Layout } from '../../components/layouts';
 
 import { pokeApi } from '../../api';
 import { Pokemon } from '../../interfaces/pokemon-full';
+import { Button, Card, Container, Grid, Text } from '@nextui-org/react';
+import Image from 'next/image';
 
 interface Props {
   pokemon: Pokemon;
 }
 
 const PokemonPage: NextPage<Props> = ({ pokemon }) => {
+  const { id, name, sprites } = pokemon;
   return (
     <Layout title="Some Pokémon">
-      <h1>{pokemon.name}</h1>
+      <Grid.Container
+        css={{
+          mt: '5px',
+        }}
+        gap={2}
+      >
+        <Grid xs={12} sm={4}>
+          <Card hoverable css={{ padding: '30px' }}>
+            <Card.Body>
+              <Image
+                alt={id + ' - ' + name}
+                src={sprites.other.dream_world.front_default}
+                height={200}
+                width={350}
+              />
+            </Card.Body>
+          </Card>
+        </Grid>
+        <Grid xs={12} sm={8}>
+          <Card>
+            <Card.Header
+              css={{
+                display: 'flex',
+                justifyContent: 'space-between',
+              }}
+            >
+              <Text h1> {name}</Text>
+              <Button color={'gradient'}>Save to Favorites</Button>
+            </Card.Header>
+            <Card.Body>
+              <Text size={30}> Sprites: </Text>
+              <Container justify="space-evenly" display="flex">
+                <Image
+                  src={sprites.front_default}
+                  alt={name + ' sprite'}
+                  width={100}
+                  height={100}
+                />
+                <Image
+                  src={sprites.back_default}
+                  alt={name + ' sprite'}
+                  width={100}
+                  height={100}
+                />
+                <Image
+                  src={sprites.front_shiny}
+                  alt={name + ' sprite'}
+                  width={100}
+                  height={100}
+                />
+                <Image
+                  src={sprites.back_shiny}
+                  alt={name + ' sprite'}
+                  width={100}
+                  height={100}
+                />
+              </Container>
+            </Card.Body>
+          </Card>
+        </Grid>
+      </Grid.Container>
     </Layout>
   );
 };
