@@ -29,7 +29,7 @@ const Navbar: FC<Props> = () => {
         height={70}
       />
       <Text color="white" h2>
-        Pokemon - First gen
+        Pokémon - Pokedex
       </Text>
       <Spacer
         css={{
