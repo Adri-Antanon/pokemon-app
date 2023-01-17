@@ -5,6 +5,7 @@ import { pokeApi } from '../../api';
 import { Pokemon } from '../../interfaces/pokemon-full';
 import { Button, Card, Container, Grid, Text } from '@nextui-org/react';
 import Image from 'next/image';
+import { toCapitalize, localFavorites } from '../../utils';
 
 interface Props {
   pokemon: Pokemon;
@@ -12,8 +13,13 @@ interface Props {
 
 const PokemonPage: NextPage<Props> = ({ pokemon }) => {
   const { id, name, sprites } = pokemon;
+
+  const onToggleFavorite = () => {
+    localFavorites.toggleFavorite(id);
+  };
+
   return (
-    <Layout title="Some Pokémon">
+    <Layout title={toCapitalize(name)}>
       <Grid.Container
         css={{
           mt: '5px',
@@ -41,7 +47,9 @@ const PokemonPage: NextPage<Props> = ({ pokemon }) => {
               }}
             >
               <Text h1> {name}</Text>
-              <Button color={'gradient'}>Save to Favorites</Button>
+              <Button onClick={onToggleFavorite} color={'gradient'}>
+                Save to Favorites
+              </Button>
             </Card.Header>
             <Card.Body>
               <Text size={30}> Sprites: </Text>
