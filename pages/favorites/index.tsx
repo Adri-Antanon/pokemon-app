@@ -4,10 +4,7 @@ import { Layout } from '../../components/layouts';
 import { Favorites, NoFavorites } from '../../components/ui';
 import localFav from '../../utils/localFavorites';
 
-interface Props {
-  // pokemons: SmallPokemon[];
-}
-export default function FavoritesPage({}: Props) {
+export default function FavoritesPage() {
   const [favoritePokemons, setFavoritePokemons] = useState<number[]>([]);
 
   useEffect(() => {
