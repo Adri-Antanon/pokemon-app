@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 
 import { Layout } from '../../components/layouts';
-import { NoFavorites } from '../../components/ui';
+import { Favorites, NoFavorites } from '../../components/ui';
 import localFav from '../../utils/localFavorites';
 
 interface Props {
@@ -16,7 +16,11 @@ export default function FavoritesPage({}: Props) {
 
   return (
     <Layout title="Pokémon - Favorites">
-      {favoritePokemons.length === 0 ? <NoFavorites /> : null}
+      {favoritePokemons.length === 0 ? (
+        <NoFavorites />
+      ) : (
+        <Favorites favoritePokemons={favoritePokemons} />
+      )}
     </Layout>
   );
 }
