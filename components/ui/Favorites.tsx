@@ -1,4 +1,4 @@
-import { Card, Grid } from '@nextui-org/react';
+import { Grid } from '@nextui-org/react';
 import { FC } from 'react';
 import { PokemonFavoriteCard } from '../pokemon/PokemonFavoriteCard';
 
