@@ -7,14 +7,15 @@ import confetti from 'canvas-confetti';
 import { Layout } from '../../components/layouts';
 
 import { pokeApi } from '../../api';
-import { Pokemon } from '../../interfaces/pokemon-full';
+import { Pokemon, TypeColor } from '../../interfaces/pokemon-full';
 import { toCapitalize, localFavorites } from '../../utils';
+import { extractProperty } from '../../utils/handleData';
 
 interface Props {
   pokemon: Pokemon;
 }
 
-const typeColors: { [x: string]: { border: string; bg: string } } = {
+const typeColors: TypeColor = {
   normal: {
     border: 'rgb(168,160,144)',
     bg: 'rgba(168,160,144, 0.4)',
@@ -230,9 +231,16 @@ export const getStaticProps: GetStaticProps = async (/* ctx */ { params }) => {
   const { id } = params as { id: string };
   const { data } = await pokeApi.get<Pokemon>(`/pokemon/${id}`);
 
+  const pokemon = {
+    id: extractProperty(data, 'id'),
+    name: extractProperty(data, 'name'),
+    sprites: extractProperty(data, 'sprites'),
+    types: extractProperty(data, 'types'),
+  };
+
   return {
     props: {
-      pokemon: data,
+      pokemon,
     },
   };
 };

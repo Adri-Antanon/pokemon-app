@@ -206,3 +206,7 @@ interface Ability {
   name: string;
   url: string;
 }
+
+export interface TypeColor {
+  [x: string]: { border: string; bg: string };
+}
