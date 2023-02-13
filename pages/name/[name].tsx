@@ -8,7 +8,7 @@ import { Layout } from '../../components/layouts';
 
 import { pokeApi } from '../../api';
 import { Pokemon, TypeColor } from '../../interfaces/pokemon-full';
-import { toCapitalize, localFavorites, extractProperty } from '../../utils';
+import { toCapitalize, localFavorites, getPokemonInfo } from '../../utils';
 import { PokemonListResponse } from '../../interfaces/pokemon-list';
 
 interface Props {
@@ -231,18 +231,10 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps = async (/* ctx */ { params }) => {
   const { name } = params as { name: string };
-  const { data } = await pokeApi.get<Pokemon>(`/pokemon/${name}`);
-
-  const pokemon = {
-    id: extractProperty(data, 'id'),
-    name: extractProperty(data, 'name'),
-    sprites: extractProperty(data, 'sprites'),
-    types: extractProperty(data, 'types'),
-  };
 
   return {
     props: {
-      pokemon,
+      pokemon: await getPokemonInfo(name),
     },
   };
 };
