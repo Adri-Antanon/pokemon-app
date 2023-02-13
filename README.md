@@ -1,6 +1,6 @@
 # Pokémon App
 
-Project to look at and create 252 cards about Pokemon, a good way to practice getStaticPaths and getStaticProps
+Project to look at and create 251 cards about Pokemon, a good way to practice getStaticPaths and getStaticProps
 
 ## Getting started
 
